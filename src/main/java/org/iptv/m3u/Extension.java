@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public enum Extension {
-    M3U("m3u", Encoding.WINDOWS_1252),
+    M3U("m3u", Encoding.UTF_8),
     M3U8("m3u8", Encoding.UTF_8);
 
     private static final Map<String, Extension> sMap = new HashMap<String, Extension>();
