@@ -48,8 +48,7 @@ class ExtendedM3uParser extends BaseM3uParser {
 
         try {
             while (mScanner.hasNext()) {
-                final String line = mScanner.next();
-                checkWhitespace(line);
+                final String line = mScanner.next().trim();
 
                 if (line.length() == 0 || isComment(line)) {
                     continue;
@@ -102,14 +101,6 @@ class ExtendedM3uParser extends BaseM3uParser {
         if (parsers != null) {
             for (IExtTagParser parser : parsers) {
                 mExtTagParsers.put(parser.getTag(), parser);
-            }
-        }
-    }
-
-    private void checkWhitespace(final String line) throws ParseException {
-        if (!isComment(line)) {
-            if (line.length() != line.trim().length()) {
-                throw ParseException.create(ParseExceptionType.WHITESPACE_IN_TRACK, line);
             }
         }
     }

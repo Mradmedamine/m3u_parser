@@ -23,8 +23,7 @@ public class M3uParser extends BaseM3uParser {
 			state.setMedia();
 
 			while (mScanner.hasNext()) {
-				final String line = mScanner.next();
-				validateLine(line);
+				final String line = mScanner.next().trim();
 
 				if (line.length() == 0) {
 					continue;
@@ -46,14 +45,6 @@ public class M3uParser extends BaseM3uParser {
 		} catch (ParseException exception) {
 			exception.setInput(mScanner.getInput());
 			throw exception;
-		}
-	}
-
-	private void validateLine(final String line) throws ParseException {
-		if (!isComment(line)) {
-			if (line.length() != line.trim().length()) {
-				throw ParseException.create(ParseExceptionType.WHITESPACE_IN_TRACK, line, "" + line.length());
-			}
 		}
 	}
 
